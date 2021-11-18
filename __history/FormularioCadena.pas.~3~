@@ -1,0 +1,65 @@
+unit FormularioCadena;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.Grids, Vcl.StdCtrls, UCCadena;
+
+type
+  TForm1 = class(TForm)
+    MainMenu1: TMainMenu;
+    StringGrid1: TStringGrid;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    CADENA11: TMenuItem;
+    AdicionarPalabra1: TMenuItem;
+    InvertirPalabras1: TMenuItem;
+    descargar1: TMenuItem;
+    Examenes1: TMenuItem;
+    DelSubCadena1: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure AdicionarPalabra1Click(Sender: TObject);
+    procedure descargar1Click(Sender: TObject);
+    procedure InvertirPalabras1Click(Sender: TObject);
+    procedure DelSubCadena1Click(Sender: TObject);
+  private
+    { Private declarations }
+    cadena1 : Cadena;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.AdicionarPalabra1Click(Sender: TObject);
+begin
+  cadena1.CargarCadena(Edit1.Text);
+end;
+
+procedure TForm1.DelSubCadena1Click(Sender: TObject);
+begin
+  cadena1.DelSubCadena(Edit1.Text);
+end;
+
+procedure TForm1.descargar1Click(Sender: TObject);
+begin
+  Edit2.Text := cadena1.ToStr;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+   cadena1 := Cadena.Create;
+end;
+
+procedure TForm1.InvertirPalabras1Click(Sender: TObject);
+begin
+  cadena1.InvertirPalabras;
+end;
+
+end.
